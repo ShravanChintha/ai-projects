@@ -156,3 +156,31 @@ curl -i http://localhost:11434/
 
 **Last Updated**: January 30, 2026
 
+
+## Day 2 — Programmatic access to Ollama (2026-01-31)
+
+**Summary**
+
+Created `chat.py` to access Ollama programmatically via the `ollama` Python client. The script is a simple REPL that sends user input to a model and prints responses.
+
+**File added**
+
+- `chat.py` — basic example using the `ollama` Python package to call a model in a loop.
+
+**How to run**
+
+```bash
+python3 chat.py
+# type messages, then 'exit' to quit
+```
+
+**Notes**
+
+- Replace the `model` string in `chat.py` with an available model from `ollama list` if needed.
+- Ensure your Ollama server/daemon is reachable (run `ollama serve` locally or use the configured client settings).
+- Consider adding error handling and streaming support next.
+
+---
+
+**Last Updated**: January 31, 2026
+

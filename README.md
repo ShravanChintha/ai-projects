@@ -87,3 +87,72 @@ This is a personal learning journey. Projects may be experimental and are intend
 ---
 
 **Last Updated**: January 2026
+
+## Day 1 — Ollama on macOS (2026-01-30)
+
+**Summary**
+
+Installed and tested Ollama locally on macOS. Tried starting the server and ran basic checks to verify what's running and reachable on port 11434.
+
+**Commands run / useful checks**
+
+- Install (Homebrew):
+
+```bash
+brew install ollama
+```
+
+- Alternative install (one-liner):
+
+```bash
+curl -fsSL https://ollama.com/install.sh | sh
+```
+
+- Start server (foreground):
+
+```bash
+ollama serve
+```
+
+- Check running Ollama instances:
+
+```bash
+ollama ps
+```
+
+- Check port 11434 for listeners:
+
+```bash
+lsof -nP -iTCP:11434 -sTCP:LISTEN
+```
+
+- Quick HTTP health check:
+
+```bash
+curl -i http://localhost:11434/
+```
+
+**Observed results (notes)**
+
+- `ollama serve` exited with code 1 in my terminal during initial attempt — check the terminal logs where you started it for error details.
+- `ollama ps` returned successfully (shows active processes/containers managed by Ollama).
+- If nothing is listening on 11434, use `lsof` to find conflicting processes and `ps -p <PID>` to inspect them.
+
+**Troubleshooting steps taken / recommendations**
+
+- Inspect the terminal output where `ollama serve` was run for stack traces or permission errors.
+- Ensure Ollama has proper permissions (macOS may require approving network access in Security & Privacy).
+- Restart the server in foreground to capture logs; use `Ctrl+C` to stop.
+- Kill any conflicting process using the port with `kill <PID>` (or `kill -9 <PID>` if needed).
+- Confirm model availability with `ollama list` and test with `ollama run <model>`.
+
+**Next steps**
+
+- Run the `lsof` and `curl` checks to confirm service state.
+- Capture and paste any error logs from `ollama serve` if further help is needed.
+- Try pulling a small model (`ollama pull <model>`) and run it to verify end-to-end functionality.
+
+---
+
+**Last Updated**: January 30, 2026
+

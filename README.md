@@ -184,3 +184,35 @@ python3 chat.py
 
 **Last Updated**: January 31, 2026
 
+
+
+## Day 3 — Streamlit UI for Ollama (2026-02-01)
+
+**Summary**
+
+Built a small Streamlit UI (`app.py`) to interact with Ollama programmatically. The app demonstrates a simple chat interface, retains chat history in the session, and includes basic error handling.
+
+**What changed**
+
+- Added a Streamlit-based chat frontend in `app.py` that keeps a running history of messages.
+- The app uses the `ollama` Python client to send user messages to a model and display responses.
+- Added a simple form with a submit button to avoid accidental immediate requests on every keystroke.
+
+**How to run (Day 3)**
+
+Make sure dependencies are installed (see `requirements.txt`). Then run:
+
+```bash
+pip install -r requirements.txt
+streamlit run app.py
+```
+
+**Notes & next steps**
+
+- Replace the `model` string in `app.py` with an available model from `ollama list` if needed.
+- Consider adding streaming responses, richer error handling, and authentication for remote Ollama setups.
+
+---
+
+**Last Updated**: February 01, 2026
+

@@ -216,3 +216,60 @@ streamlit run app.py
 
 **Last Updated**: February 01, 2026
 
+
+## Day 4 — PDF text extraction using pypdf (2026-02-02)
+
+**Summary**
+
+Added a simple guide for extracting text from PDF files using the `pypdf` library and the existing `pdf_loader.py` script in this repository.
+
+**What to use**
+
+- `pypdf` — lightweight pure-Python PDF parsing library for extracting text from pages.
+
+**How it works (example)**
+
+Install the dependency (if not already installed):
+
+```bash
+pip install pypdf
+```
+
+Basic example (the repository includes `pdf_loader.py`):
+
+```python
+from pypdf import PdfReader
+
+reader = PdfReader("sample.pdf")
+text = []
+for page in reader.pages:
+    page_text = page.extract_text()
+    if page_text:
+        text.append(page_text)
+
+full_text = "\n\n".join(text)
+print(full_text[:1000])  # preview first 1000 chars
+```
+
+Notes & recommendations
+
+- `extract_text()` may return `None` for pages with images or scanned content — consider OCR (Tesseract) for scanned PDFs.
+- For large PDFs, stream pages and write to disk incrementally to avoid large memory usage.
+- Use `pdf_loader.py` as a starting point to adapt file input, batching, or integration with downstream processing (embeddings, RAG, etc.).
+
+**How to run (quick)**
+
+```bash
+pip install -r requirements.txt  # ensure pypdf is listed or install it directly
+python pdf_loader.py sample.pdf
+```
+
+**Next steps**
+
+- Add CLI flags to `pdf_loader.py` for output path and page ranges.
+- Integrate OCR fallback for scanned PDFs.
+
+---
+
+**Last Updated**: February 02, 2026
+

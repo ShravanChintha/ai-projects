@@ -273,3 +273,39 @@ python pdf_loader.py sample.pdf
 
 **Last Updated**: February 02, 2026
 
+## Day 5 — Learning to chunk data (2026-02-04)
+
+**Summary**
+
+Implemented and experimented with text chunking techniques to prepare large documents for embeddings and retrieval. Proper chunking improves semantic search quality and keeps requests within model/token limits.
+
+**Key points**
+
+- **Why chunk?**: Large documents must be split so embedding models and retrievers can process context-sized segments reliably.
+- **Strategy**: Use a sliding-window approach with configurable `chunk_size` and `overlap` to preserve context across chunk boundaries.
+- **Practical defaults**: start with ~1000 characters (or ~512-1000 tokens) and 100-200 overlap; tune based on embedding model and downstream retrieval performance.
+
+**Files**
+
+- See [chunk.py](chunk.py) for a simple implementation that splits text into overlapping chunks.
+
+**Example usage**
+
+1. Import and call the chunk helper in preprocessing before creating embeddings.
+
+```python
+from chunk import chunk_text
+chunks = chunk_text(long_text, chunk_size=1000, overlap=200)
+```
+
+**Next steps**
+
+- Integrate chunking with the embedding pipeline and store chunk metadata (source, page, offset).
+- Benchmark retrieval quality vs. chunk size/overlap settings.
+
+---
+
+**Last Updated**: February 04, 2026
+
+````
+

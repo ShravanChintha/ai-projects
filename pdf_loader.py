@@ -1,4 +1,5 @@
 from pypdf import PdfReader
+from chunk import chunk_text, chunk_sentences
 
 def load_pdf(file_path):
     reader = PdfReader(file_path)
@@ -11,7 +12,13 @@ def load_pdf(file_path):
         text += page_text + "\n"
     return pages_text, text
 
-# Example usage:
 pages_text, full_text = load_pdf("vl-jepa.pdf")
-for page_num, page_text in pages_text:
-    print(f"Page {page_num}:\n{page_text}\n")
+
+# Example usage of chunking functions
+text_chunks = chunk_text(full_text, chunk_size=1000, overlap=200)
+sentences = full_text.split('. ')
+sentence_chunks = chunk_sentences(sentences, chunk_size=5, overlap=2)
+print(f"Total pages: {len(pages_text)}")
+print(f"Total text chunks: {len(text_chunks)}") 
+print(f"Total sentence chunks: {len(sentence_chunks)}")
+print("sentence_chunks:", sentence_chunks)

@@ -307,5 +307,41 @@ chunks = chunk_text(long_text, chunk_size=1000, overlap=200)
 
 **Last Updated**: February 04, 2026
 
+## Day 6 — Embeddings with Sentence Transformers (2026-02-05)
+
+**Summary**
+
+Generated embeddings from PDF text using the `sentence-transformers` library. Compared two models (`all-MiniLM-L6-v2` and `all-mpnet-base-v2`) and confirmed the embedding shapes and chunk counts from `embedder.py`.
+
+**What I used**
+
+- `sentence-transformers` with `SentenceTransformer.encode()`
+- Pre-chunked text from `chunk.py` + extracted PDF text from `pdf_loader.py`
+
+**Key learnings**
+
+- Smaller models (e.g., `all-MiniLM-L6-v2`) are faster and lighter; larger models (e.g., `all-mpnet-base-v2`) can be more accurate but heavier.
+- Chunking before embedding ensures consistent input sizes and better retrieval behavior.
+- Warnings like **UNEXPECTED** during model load are typically safe when architectures differ but embeddings still generate successfully.
+
+**Files**
+
+- See [embedder.py](embedder.py) for the embedding pipeline example.
+
+**Example run**
+
+```bash
+python3 embedder.py
+```
+
+**Next steps**
+
+- Add vector storage (FAISS/Chroma) for similarity search.
+- Experiment with batch sizes and device placement (CPU vs. GPU).
+
+---
+
+**Last Updated**: February 05, 2026
+
 ````
 

@@ -49,6 +49,38 @@ Each project in this repository will include:
 - **Development Tools**: VS Code, AI Toolkit, Jupyter Notebooks
 - **Version Control**: Git & GitHub
 
+## 📚 RAG with ChromaDB
+
+A local RAG (Retrieval-Augmented Generation) implementation using ChromaDB to index and query PDF documents.
+
+### Setup
+
+1. **Environment Setup**:
+   ```bash
+   python3 -m venv .venv
+   source .venv/bin/activate
+   pip install chromadb sentence-transformers pypdf numpy
+   ```
+
+2. **Ingest Data**:
+   Process a PDF file (e.g., `vl-jepa.pdf`), chunk its content, compute embeddings, and store them in a persistent local ChromaDB.
+   ```bash
+   python3 vectordb.py
+   ```
+   This creates a `./chroma_db` directory storing the vector index.
+
+3. **Query Data**:
+   Search the vector database for relevant chunks based on a natural language query.
+   ```bash
+   python3 query.py
+   ```
+
+### Key Components
+- **`vectordb.py`**: Handles PDF loading, text chunking, embedding generation using `all-MiniLM-L6-v2`, and storage in ChromaDB.
+- **`query.py`**: Connects to the existing ChromaDB collection to perform similarity search based on query embeddings.
+- **`embedder.py`**: Manages model caching and efficient embedding generation.
+
+
 ## 📚 Learning Approach
 
 1. **Explore**: Research and understand new AI technologies
